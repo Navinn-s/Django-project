@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1 style="text-align:center;color:blue;">EDIT DETAILS</h1>
+
+
+
+<div class="container" style="color:white">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="mb-3">
+  <label  class="form-label">ADD STOCK</label>
+  <input type="text" class="form-control" value="{{pro.stock}}" name="a" placeholder="ENTER STOCK">
+</div>
+
+
+
+
+
+    <button type="submit" class="btn btn-secondary px-4">SUBMIT</button>
+
+
+</form>
+
+</div>
+
+
+{% endblock %}

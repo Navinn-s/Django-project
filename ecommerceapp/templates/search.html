@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1 style="text-align:center;color:blue;">SEARCH</h1>
+
+
+
+<div class="card container">
+
+      <form role="search" method="post" class="form-group" action="{% url 'search:search' %}">
+          {% csrf_token %}
+        <input type="search" id="search-form" class="form-control border-0 border-bottom"
+          placeholder="Type and press enter" value="" name="s" />
+
+        <button type="submit" class="search-submit border-0 position-absolute bg-white "
+          style="top: 5px;right: 35px;"><svg class="search" width="24" height="24">
+            <use xlink:href="#search"></use>
+          </svg></button>
+      </form>
+
+</div>
+
+
+<DIV style="color:white" class="container">
+<h1 class="text-center">YOU HAVE SEARCHED FOR <span class="text-light">{{query}}</span></h1>
+
+<div class="mx-auto w-75">
+{% if product == None %}
+<!--    <h4 class="text-center text-danger">NO RESULT FOUND</h4>-->
+    {% elif product.exists %}
+
+
+     {% for i in product %}
+ <div class="col-md-6 column-container bg-secondary">
+            <div class="collection-content p-5 m-0 m-md-5">
+                <img src="{{i.image.url}}" height="200" width="200" alt="not">
+              <h3 class="element-title text-uppercase">{{i.name}}</h3>
+
+              <p>DESCRIPTION : {{i.desc}}</p>
+              <p>PRICE :${{i.price}}</p>
+              <p>STOCK : {{i.stock}}</p>
+
+
+            </div>
+ </div>
+    {% endfor %}
+
+    {% else %}
+
+    <h4 class="text-center text-danger">NO RESULT FOUND</h4>
+    {% endif %}
+
+</div>
+</DIV>
+
+
+
+{% endblock %}

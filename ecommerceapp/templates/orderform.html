@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1 style="text-align:center;color:blue;">PLACE ORDER</h1>
+<div class="container">
+<form  method="post" >
+    {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">ADDRESS</label>
+    <input type="text" class="form-control" name="a" placeholder="ENTER ADDRESS">
+  </div>
+
+    <div class="mb-3">
+    <label class="form-label">PHONE NUMBER</label>
+    <input type="number" class="form-control" name="p" placeholder="ENTER PHONE NUMBER">
+  </div>
+
+    <div class="mb-3">
+    <label class="form-label">PIN CODE</label>
+    <input type="number" class="form-control" name="n" placeholder="ENTER PINCODE">
+  </div>
+
+<button type="submit" class="btn btn-secondary ">Submit</button>
+</form>
+    </div>
+{% endblock %}

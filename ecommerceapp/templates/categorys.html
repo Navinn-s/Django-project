@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+      <div class="row justify-content-center">
+        <h1 class="section-title text-center mt-4" data-aos="fade-up">New Collections</h1>
+        <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptas ut dolorum consequuntur, adipisci
+            repellat! Eveniet commodi voluptatem voluptate, eum minima, in suscipit explicabo voluptatibus harum,
+            quibusdam ex repellat eaque!</p>
+        </div>
+
+
+
+
+
+        <section class="video py-5 overflow-hidden">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="video-content open-up" data-aos="zoom-out">
+          <div class="video-bg">
+            <img src="{% static 'images/video-image.jpg' %}" alt="video" class="video-image img-fluid">
+          </div>
+          <div class="video-player">
+
+            <a class="youtube" href="https://www.youtube.com/">
+
+              <svg width="24" height="24" viewBox="0 0 24 24">
+<!--                <use xlink:href="#play"></use>-->
+
+              </svg>
+
+              <img src="{% static 'images/text-pattern.png' %}" alt="pattern" class="text-rotate">
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
+    <div class="offcanvas-header justify-content-center">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Growers cider</h6>
+              <small class="text-body-secondary">Brief description</small>
+            </div>
+            <span class="text-body-secondary">$12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Fresh grapes</h6>
+              <small class="text-body-secondary">Brief description</small>
+            </div>
+            <span class="text-body-secondary">$8</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Heinz tomato ketchup</h6>
+              <small class="text-body-secondary">Brief description</small>
+            </div>
+            <span class="text-body-secondary">$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$20</strong>
+          </li>
+        </ul>
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container w-50 mx-auto mt-5">
+
+
+<h1 class="text-center" style="font-size:40px;">OUR COLLECTIONS</h1>
+<P style="text-align:justify;line-height:1.5;font-size:20px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore omnis qui saepe. Aut consequatur doloremque
+  laborum placeat quibusdam
+  repudiandae sed! Dolore itaque laborum quibusdam ratione repudiandae similique soluta totam voluptatum!
+Lorem ipsu labore maxime obcaecati, officiis sapiente, ullam vero vitae.  cum necessitatibus quos.
+  Enim, totam.lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at commodi eaque sunt voluptates! Cum
+  deserunt dolorem dolorum eligendi ex explicabo maiores molestiae nihil quaerat rem reprehenderit tenetur, ullam, voluptatum?Lorem ipsum dolor sit amet,
+</P>
+
+
+</div>
+
+
+<!--CARD-->
+
+  <section class="categories overflow-hidden">
+    <div class="container">
+      <div class="open-up" data-aos="zoom-out">
+        <div class="row">
+          {% for i in cat %}
+          <div class="col-md-4">
+
+            <div class="cat-item image-zoom-effect">
+              <div class="image-holder">
+                <a href="{% url 'shop:products' i.id %}">
+                  <img src="{{i.image.url }}" alt="categories"  style="height:200px;width:300px">
+                </a>
+              </div>
+              <div class="category-content">
+                <div class="product-button">
+                  <a href="{% url 'shop:products' i.id %}" class="btn btn-common text-uppercase">{{i.name}}</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!--CARD END-->
+
+{% endblock %}

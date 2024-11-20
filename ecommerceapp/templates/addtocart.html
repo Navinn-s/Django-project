@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h2 style="text-align:center;color:blue">CART ITEMS</h2>
+<div class="container" style="color:white">
+
+
+  <table class="table table-bordered">
+
+    <tr>
+      <th scope="col">PRODUCT IMAGE</th>
+      <th scope="col">PRODUCT NAME</th>
+      <th scope="col">PRODUCT PRICE</th>
+        <th scope="col">PRODUCT QUANTITY</th>
+      <th scope="col">SUB TOTAL</th>
+
+
+    </tr>
+
+{% for i in cart %}
+    <tr>
+      <td><img src="{{i.product.image.url}}" height="200px" width="100%"></td>
+      <td>{{i.product.name}}</td>
+      <td>${{i.product.price}}</td>
+      <td>{{i.quantity}}</td>
+      <td>${{i.subtotal}}</td>
+        <td>
+          {% if i.product.stock > 0 %}
+          <a href="{% url 'cart:addtocart' i.product.id %}"><i class="fa-solid fa-circle-plus text-success"></i></a>
+          <a href="{% url 'cart:minusfromcart' i.product.id %}"><i class="fa-solid fa-circle-minus text-secondary"></i></a>
+          <a href="{% url 'cart:delete' i.product.id %}"><i class="fa-solid fa-trash text-danger"></i></a>
+          {% else %}
+          <a href="{% url 'cart:minusfromcart' i.product.id %}"><i class="fa-solid fa-circle-minus text-secondary"></i></a>
+          <a href="{% url 'cart:delete' i.product.id %}"><i class="fa-solid fa-trash text-danger"></i></a>
+          {% endif %}
+        </td>
+
+    </tr>
+    {% endfor %}
+    <tr>
+    <th scope="col">CHECKOUT</th>
+      <th scope="col">TOTAL :{{total}}</th>
+
+      <td><a href="{% url 'cart:orderform' %}" class="btn btn-danger">PLACE ORDER</a></td>
+      <td><a href="{% url 'shop:categorys' %}" class="btn btn-success">CONTINUE SHOPPING</a></td>
+      </tr>
+
+
+
+
+      </table>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

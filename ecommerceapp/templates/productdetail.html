@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="collection bg-light position-relative py-5">
+    <div class="container">
+      <div class="row">
+        <div class="title-xlarge text-uppercase txt-fx domino">Collection</div>
+        <div class="collection-item d-flex flex-wrap my-5">
+          <div class="col-md-6 column-container">
+            <div class="image-holder">
+              <img src="{{pro.image.url}}" height="500px" width="100%" class="border bordered-secondary">
+            </div>
+          </div>
+          <div class="col-md-6 column-container bg-white">
+            <div class="collection-content p-5 m-0 m-md-5">
+              <h3 class="element-title text-uppercase">{{pro.name}}</h3>
+              <p>DESCRIPTION : {{pro.desc}}</p>
+              <p>PRICE :${{pro.price}}</p>
+              <p>STOCK : {{pro.stock}}</p>
+
+                {% if user.is_superuser %}
+                      {% if pro.stock > 0 %}
+                        <p>PRODUCT IN STOCK</p>
+                        <a href="{% url 'shop:addstock' pro.id %}" class="btn btn-dark text-uppercase mt-3">ADD STOCK</a>
+                      {% else %}
+                        <p>PRODUCT OUT OF STOCK</p>
+                        <a href="{% url 'shop:addstock' pro.id %}" class="btn btn-dark text-uppercase mt-3">ADD STOCK</a>
+                      {% endif %}
+                    {% else %}
+                      {% if pro.stock > 0 %}
+                         <a href="{% url 'cart:addtocart' pro.id %}" class="btn btn-dark text-uppercase mt-3">ADD TO CART</a>
+                      {% else %}
+                        <p>PRODUCT OUT OF STOCK</p>
+                      {% endif %}
+                    {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
